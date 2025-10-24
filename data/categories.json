@@ -1,0 +1,10 @@
+[
+  {"id": "all", "name": "Все категории", "count": 4},
+  {"id": "concert", "name": "Концерты", "count": 1},
+  {"id": "theatre", "name": "Театры", "count": 1},
+  {"id": "festival", "name": "Фестивали", "count": 1},
+  {"id": "exhibition", "name": "Выставки", "count": 1},
+  {"id": "sport", "name": "Спорт", "count": 0},
+  {"id": "standup", "name": "Стендап", "count": 0},
+  {"id": "kids", "name": "Детские", "count": 0}
+]

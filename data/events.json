@@ -1,0 +1,129 @@
+{
+  "lastUpdated": "2024-01-15T10:00:00.000Z",
+  "events": [
+    {
+      "id": 1,
+      "title": "Концерт: Группа Ленинград",
+      "date": "2024-11-15",
+      "time": "19:00",
+      "venue": "Стадион Лужники",
+      "city": "Москва",
+      "category": "concert",
+      "image": "/images/placeholder.jpg",
+      "description": "Масштабный концерт легендарной группы с новой программой. Все хиты и новые композиции.",
+      "prices": [
+        {
+          "platform": "Ticketland",
+          "price": 2500,
+          "fee": 300,
+          "url": "https://ticketland.ru/event/leningrad"
+        },
+        {
+          "platform": "Kassir.ru",
+          "price": 2400,
+          "fee": 350,
+          "url": "https://kassir.ru/event/leningrad"
+        },
+        {
+          "platform": "Яндекс.Афиша",
+          "price": 2600,
+          "fee": 250,
+          "url": "https://afisha.yandex.ru/event/leningrad"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Спектакль 'Евгений Онегин'",
+      "date": "2024-11-20",
+      "time": "19:30",
+      "venue": "Большой театр",
+      "city": "Москва",
+      "category": "theatre",
+      "image": "/images/placeholder.jpg",
+      "description": "Классическая постановка знаменитого произведения Александра Пушкина.",
+      "prices": [
+        {
+          "platform": "Ticketland",
+          "price": 3500,
+          "fee": 400,
+          "url": "https://ticketland.ru/event/onegin"
+        },
+        {
+          "platform": "Kassir.ru",
+          "price": 3200,
+          "fee": 380,
+          "url": "https://kassir.ru/event/onegin"
+        },
+        {
+          "platform": "Parter.ru",
+          "price": 3400,
+          "fee": 350,
+          "url": "https://parter.ru/event/onegin"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Фестиваль 'Усадьба Jazz'",
+      "date": "2024-11-25",
+      "time": "18:00",
+      "venue": "Парк Коломенское",
+      "city": "Москва",
+      "category": "festival",
+      "image": "/images/placeholder.jpg",
+      "description": "Крупнейший джазовый фестиваль страны с участием мировых звезд.",
+      "prices": [
+        {
+          "platform": "Ticketland",
+          "price": 4200,
+          "fee": 500,
+          "url": "https://ticketland.ru/event/usadba-jazz"
+        },
+        {
+          "platform": "Яндекс.Афиша",
+          "price": 4000,
+          "fee": 450,
+          "url": "https://afisha.yandex.ru/event/usadba-jazz"
+        },
+        {
+          "platform": "Kassir.ru",
+          "price": 4300,
+          "fee": 480,
+          "url": "https://kassir.ru/event/usadba-jazz"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Выставка 'Импрессионисты'",
+      "date": "2024-12-01",
+      "time": "10:00",
+      "venue": "Третьяковская галерея",
+      "city": "Москва",
+      "category": "exhibition",
+      "image": "/images/placeholder.jpg",
+      "description": "Шедевры французского импрессионизма из собраний мировых музеев.",
+      "prices": [
+        {
+          "platform": "Kassir.ru",
+          "price": 800,
+          "fee": 100,
+          "url": "https://kassir.ru/event/impressionists"
+        },
+        {
+          "platform": "Яндекс.Афиша",
+          "price": 750,
+          "fee": 80,
+          "url": "https://afisha.yandex.ru/event/impressionists"
+        },
+        {
+          "platform": "Ticketland",
+          "price": 850,
+          "fee": 120,
+          "url": "https://ticketland.ru/event/impressionists"
+        }
+      ]
+    }
+  ]
+}
