@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск авиабилетов - TicketHunter</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/flights.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-plane"></i>
+                    <span>TicketHunter Авиа</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="/" class="nav-link">Мероприятия</a>
+                    <a href="/flights" class="nav-link active">Авиабилеты</a>
+                    <a href="/about" class="nav-link">О проекте</a>
+                </nav>
+            </div>
+            
+            <div class="hero-section">
+                <h1>Найдите лучшие цены на авиабилеты</h1>
+                <p>Сравниваем цены со всех популярных авиаплатформ</p>
+                
+                <div class="search-container">
+                    <form id="flightSearchForm" class="flight-search-form">
+                        <div class="search-row">
+                            <div class="form-group">
+                                <label for="from">Откуда</label>
+                                <input type="text" id="from" name="from" placeholder="Город или код (MOW)" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="to">Куда</label>
+                                <input type="text" id="to" name="to" placeholder="Город или код (LED)" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="date">Дата вылета</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="passengers">Пассажиры</label>
+                                <select id="passengers" name="passengers">
+                                    <option value="1">1 пассажир</option>
+                                    <option value="2">2 пассажира</option>
+                                    <option value="3">3 пассажира</option>
+                                    <option value="4">4 пассажира</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary search-btn">
+                            <i class="fas fa-search"></i> Найти билеты
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="popular-routes" id="popularRoutes">
+                    <!-- Популярные направления будут загружены здесь -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="filters-section">
+            <div class="filters-row">
+                <select id="sortSelect">
+                    <option value="price">Сначала дешевле</option>
+                    <option value="duration">Сначала быстрее</option>
+                    <option value="stops">Без пересадок</option>
+                    <option value="airline">По авиакомпании</option>
+                </select>
+                
+                <div class="filter-chips">
+                    <label class="filter-chip">
+                        <input type="checkbox" id="filterDirect" checked>
+                        <span>Только прямые</span>
+                    </label>
+                    <label class="filter-chip">
+                        <input type="checkbox" id="filterBaggage" checked>
+                        <span>С багажом</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div class="loading" id="loadingIndicator">
+                <i class="fas fa-spinner fa-spin"></i> Ищем лучшие цены...
+            </div>
+
+            <div class="stats-bar" id="statsBar" style="display: none;">
+                <div class="stat">
+                    <span class="stat-value" id="ticketsCount">0</span>
+                    <span class="stat-label">найдено билетов</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="minPrice">0 ₽</span>
+                    <span class="stat-label">минимальная цена</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="airlinesCount">0</span>
+                    <span class="stat-label">авиакомпаний</span>
+                </div>
+            </div>
+
+            <div class="tickets-grid" id="ticketsGrid">
+                <!-- Билеты будут загружены здесь -->
+            </div>
+
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-plane-slash"></i>
+                <h3>Билеты не найдены</h3>
+                <p>Попробуйте изменить параметры поиска или выберите другую дату</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/flights-app.js"></script>
+</body>
+</html>
