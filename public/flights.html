@@ -4,126 +4,342 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Поиск авиабилетов - TicketHunter</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/flights.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0 3rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-link.active {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .hero-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .search-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .search-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            grid-column: 1 / -1;
+        }
+        
+        .ticket-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .ticket-airline {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .ticket-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+        }
+        
+        .error {
+            background: #ffeaa7;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-plane"></i>
                     <span>TicketHunter Авиа</span>
                 </div>
                 <nav class="main-nav">
                     <a href="/" class="nav-link">Мероприятия</a>
                     <a href="/flights" class="nav-link active">Авиабилеты</a>
-                    <a href="/about" class="nav-link">О проекте</a>
                 </nav>
             </div>
             
             <div class="hero-section">
                 <h1>Найдите лучшие цены на авиабилеты</h1>
-                <p>Сравниваем цены со всех популярных авиаплатформ</p>
+                <p>Поиск авиабилетов по всем популярным направлениям</p>
                 
                 <div class="search-container">
-                    <form id="flightSearchForm" class="flight-search-form">
-                        <div class="search-row">
-                            <div class="form-group">
-                                <label for="from">Откуда</label>
-                                <input type="text" id="from" name="from" placeholder="Город или код (MOW)" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="to">Куда</label>
-                                <input type="text" id="to" name="to" placeholder="Город или код (LED)" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="date">Дата вылета</label>
-                                <input type="date" id="date" name="date" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="passengers">Пассажиры</label>
-                                <select id="passengers" name="passengers">
-                                    <option value="1">1 пассажир</option>
-                                    <option value="2">2 пассажира</option>
-                                    <option value="3">3 пассажира</option>
-                                    <option value="4">4 пассажира</option>
-                                </select>
-                            </div>
+                    <form id="flightSearchForm" class="search-form">
+                        <div class="form-group">
+                            <label for="from">Откуда</label>
+                            <input type="text" id="from" placeholder="MOW" value="MOW" required>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary search-btn">
-                            <i class="fas fa-search"></i> Найти билеты
-                        </button>
+                        <div class="form-group">
+                            <label for="to">Куда</label>
+                            <input type="text" id="to" placeholder="LED" value="LED" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Дата вылета</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="passengers">Пассажиры</label>
+                            <select id="passengers">
+                                <option value="1">1 пассажир</option>
+                                <option value="2">2 пассажира</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="search-btn">Найти билеты</button>
                     </form>
-                </div>
-                
-                <div class="popular-routes" id="popularRoutes">
-                    <!-- Популярные направления будут загружены здесь -->
                 </div>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <section class="filters-section">
-            <div class="filters-row">
-                <select id="sortSelect">
-                    <option value="price">Сначала дешевле</option>
-                    <option value="duration">Сначала быстрее</option>
-                    <option value="stops">Без пересадок</option>
-                    <option value="airline">По авиакомпании</option>
-                </select>
-                
-                <div class="filter-chips">
-                    <label class="filter-chip">
-                        <input type="checkbox" id="filterDirect" checked>
-                        <span>Только прямые</span>
-                    </label>
-                    <label class="filter-chip">
-                        <input type="checkbox" id="filterBaggage" checked>
-                        <span>С багажом</span>
-                    </label>
-                </div>
-            </div>
-        </section>
-
-        <section class="results-section">
-            <div class="loading" id="loadingIndicator">
-                <i class="fas fa-spinner fa-spin"></i> Ищем лучшие цены...
-            </div>
-
-            <div class="stats-bar" id="statsBar" style="display: none;">
-                <div class="stat">
-                    <span class="stat-value" id="ticketsCount">0</span>
-                    <span class="stat-label">найдено билетов</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value" id="minPrice">0 ₽</span>
-                    <span class="stat-label">минимальная цена</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value" id="airlinesCount">0</span>
-                    <span class="stat-label">авиакомпаний</span>
-                </div>
-            </div>
-
-            <div class="tickets-grid" id="ticketsGrid">
-                <!-- Билеты будут загружены здесь -->
-            </div>
-
-            <div class="no-results" id="noResults" style="display: none;">
-                <i class="fas fa-plane-slash"></i>
-                <h3>Билеты не найдены</h3>
-                <p>Попробуйте изменить параметры поиска или выберите другую дату</p>
-            </div>
-        </section>
+        <div id="loadingIndicator" class="loading" style="display: none;">
+            Поиск лучших цен...
+        </div>
+        
+        <div id="errorMessage" class="error" style="display: none;"></div>
+        
+        <div id="resultsContainer">
+            <!-- Результаты поиска будут здесь -->
+        </div>
     </main>
 
-    <script src="/js/flights-app.js"></script>
+    <script>
+        class FlightsApp {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setDefaultDate();
+                this.setupEventListeners();
+                console.log('Flights app initialized');
+            }
+
+            setupEventListeners() {
+                document.getElementById('flightSearchForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.searchFlights();
+                });
+            }
+
+            setDefaultDate() {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                document.getElementById('date').value = tomorrow.toISOString().split('T')[0];
+            }
+
+            async searchFlights() {
+                const formData = new FormData(document.getElementById('flightSearchForm'));
+                const params = {
+                    from: formData.get('from') || 'MOW',
+                    to: formData.get('to') || 'LED',
+                    date: formData.get('date'),
+                    passengers: formData.get('passengers') || '1'
+                };
+
+                this.showLoading(true);
+                this.hideError();
+
+                try {
+                    const queryString = new URLSearchParams(params).toString();
+                    const response = await fetch(`/api/flights/search?${queryString}`);
+                    
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    
+                    const data = await response.json();
+                    this.displayResults(data);
+                } catch (error) {
+                    console.error('Search error:', error);
+                    this.showError('Ошибка при поиске билетов. Проверьте подключение к интернету.');
+                } finally {
+                    this.showLoading(false);
+                }
+            }
+
+            displayResults(data) {
+                const container = document.getElementById('resultsContainer');
+                
+                if (!data.tickets || data.tickets.length === 0) {
+                    container.innerHTML = '<div class="error">Билеты не найдены. Попробуйте другие параметры поиска.</div>';
+                    return;
+                }
+
+                container.innerHTML = data.tickets.map(ticket => this.createTicketCard(ticket)).join('');
+            }
+
+            createTicketCard(ticket) {
+                const bestPrice = ticket.prices.reduce((best, current) => 
+                    current.price < best.price ? current : best
+                );
+
+                return `
+                    <div class="ticket-card">
+                        <div class="ticket-header">
+                            <div class="ticket-airline">${ticket.airline}</div>
+                            <div class="ticket-price">${this.formatPrice(bestPrice.price)}</div>
+                        </div>
+                        <div class="ticket-details">
+                            <p><strong>Маршрут:</strong> ${ticket.route}</p>
+                            <p><strong>Дата:</strong> ${ticket.date}</p>
+                            <p><strong>Время:</strong> ${ticket.time}</p>
+                            <p><strong>Пересадки:</strong> ${ticket.stops === 0 ? 'Прямой рейс' : ticket.stops + ' пересадки'}</p>
+                            <p><strong>Класс:</strong> ${this.getClassLabel(ticket.class)}</p>
+                        </div>
+                        <div class="ticket-platforms">
+                            <p><strong>Доступно на:</strong> ${ticket.prices.map(p => p.platform).join(', ')}</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            formatPrice(price) {
+                return new Intl.NumberFormat('ru-RU', {
+                    style: 'currency',
+                    currency: 'RUB',
+                    minimumFractionDigits: 0
+                }).format(price);
+            }
+
+            getClassLabel(flightClass) {
+                const labels = {
+                    'economy': 'Эконом',
+                    'comfort': 'Комфорт', 
+                    'business': 'Бизнес'
+                };
+                return labels[flightClass] || flightClass;
+            }
+
+            showLoading(show) {
+                document.getElementById('loadingIndicator').style.display = show ? 'block' : 'none';
+            }
+
+            showError(message) {
+                const errorEl = document.getElementById('errorMessage');
+                errorEl.textContent = message;
+                errorEl.style.display = 'block';
+            }
+
+            hideError() {
+                document.getElementById('errorMessage').style.display = 'none';
+            }
+        }
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            window.flightsApp = new FlightsApp();
+        });
+    </script>
 </body>
 </html>
