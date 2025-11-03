@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск авиабилетов - TicketHunter</title>
+
+    <!-- Подключаем CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/flights.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span>TicketHunter Авиа</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="/" class="nav-link">Мероприятия</a>
+                    <a href="/flights" class="nav-link active">Авиабилеты</a>
+                </nav>
+            </div>
+            
+            <div class="hero-section">
+                <h1>Найдите лучшие цены на авиабилеты</h1>
+                <p>Поиск авиабилетов по всем популярным направлениям</p>
+                
+                <div class="search-container">
+                    <form id="flightSearchForm" class="search-form">
+                        <div class="form-group">
+                            <label for="from">Откуда</label>
+                            <input type="text" id="from" placeholder="MOW" value="MOW" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="to">Куда</label>
+                            <input type="text" id="to" placeholder="LED" value="LED" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Дата вылета</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="passengers">Пассажиры</label>
+                            <select id="passengers">
+                                <option value="1">1 пассажир</option>
+                                <option value="2">2 пассажира</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="search-btn">Найти билеты</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="loadingIndicator" class="loading" style="display: none;">
+            Поиск лучших цен...
+        </div>
+        
+        <div id="errorMessage" class="error" style="display: none;"></div>
+        
+        <div id="resultsContainer"></div>
+    </main>
+
+    <!-- Подключаем JS -->
+    <script src="js/flights.js"></script>
+</body>
+</html>
